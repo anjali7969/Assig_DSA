@@ -70,7 +70,7 @@ public class FriendRecommendation {
     // Sample usage
     public static void main(String[] args) {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dsa_db", "root", "password");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dsa", "mysql", "password");
             FriendRecommendation friendRecommendation = new FriendRecommendation(connection);
             String user = "Anjali Shrestha";
 

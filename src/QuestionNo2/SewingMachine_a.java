@@ -27,7 +27,7 @@ public class SewingMachine_a {
     public static void main(String[] args) {
         int[] machines = {1, 0, 5};
         int minMoves = minMovesToEqualize(machines);
-        System.out.println("Minimum number of moves required: " + minMoves);
+        System.out.println("Minimum number of moves required: " + minMoves); //output:3
     }
 }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AntColonyAlgorithm_a {
+public class  AntColonyAlgorithm_a {
 
     private double[][] distances;
     private double[][] pheromones;
@@ -186,7 +186,7 @@ public class AntColonyAlgorithm_a {
 
         System.out.print("Best Tour: ");
         for (int city : bestTour) {
-            System.out.print(city + " ");
+            System.out.print(city + " "); //output: 2 3 1 0
         }
     }
 }

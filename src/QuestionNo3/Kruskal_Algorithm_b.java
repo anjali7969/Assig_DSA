@@ -86,3 +86,9 @@ public class Kruskal_Algorithm_b {
     }
 }
 
+//output
+// Minimum Spanning Tree edges:
+//2 - 3 : 4
+//0 - 3 : 5
+//0 - 1 : 10
+

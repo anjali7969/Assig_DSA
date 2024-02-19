@@ -1,4 +1,4 @@
-package QuestionNo2;
+
 
 //You are given an integer n representing the total number of individuals. Each individual is identified by a unique
 //ID from 0 to n-1. The individuals have a unique secret that they can share with others.
@@ -10,7 +10,7 @@ package QuestionNo2;
 //You need to determine the set of individuals who will eventually know the secret after all the possible secret
 //sharing intervals have occurred.
 
-
+package QuestionNo2;
 
 import java.util.ArrayList;
 import java.util.HashSet;

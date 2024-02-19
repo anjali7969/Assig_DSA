@@ -39,7 +39,7 @@ public class EngineBuild_b {
         int splitCost = 2;
 
         int minTime = minTimeToBuildEngines(engines, splitCost);
-        System.out.println("Minimum time needed to build all engines: " + minTime);
+        System.out.println("Minimum time needed to build all engines: " + minTime); //output:4
     }
 }
 

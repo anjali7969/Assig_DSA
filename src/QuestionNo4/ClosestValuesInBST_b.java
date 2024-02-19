@@ -65,6 +65,6 @@ public class ClosestValuesInBST_b {
         int x = 2;
         List<Integer> result = solution.closestValues(root, target, x);
 
-        System.out.println("Closest values to " + target + ": " + result);
+        System.out.println("Closest values to " + target + ": " + result); //output 3.8:[3,4]
     }
 }

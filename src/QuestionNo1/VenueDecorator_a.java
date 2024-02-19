@@ -1,4 +1,4 @@
-package QuestionNo1;
+
 
 //You are a planner working on organizing a series of events in a row of n venues. Each venue can be decorated with
 // one of the k available themes. However, adjacent venues should not have the same theme. The cost of decorating
@@ -19,6 +19,8 @@ package QuestionNo1;
 //  Example: Input: [[1, 3, 2], [4, 6, 8], [3, 1, 5]] Output: 7
 //  Explanation: Decorate venue 0 with theme 0, venue 1 with theme 1, and venue 2 with theme 0. Minimum cost: 1 +
 //  6 + 1 = 7.
+
+package QuestionNo1;
 
 public class VenueDecorator_a {
     public static int minCost(int[][] costs) {
@@ -61,7 +63,7 @@ public class VenueDecorator_a {
     public static void main(String[] args) {
         int[][] costs = {{1, 3, 2}, {4, 6, 8}, {3, 1, 5}};
         int minCost = minCost(costs);
-        System.out.println("Minimum cost: " + minCost);
+        System.out.println("Minimum cost: " + minCost); //output:7
     }
 }
 

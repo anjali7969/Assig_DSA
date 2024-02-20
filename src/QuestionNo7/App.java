@@ -1,7 +1,5 @@
 package QuestionNo7;
 
-
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -20,7 +18,9 @@ public class App {
     private static Map<String, User> users = new HashMap<>();
     private static User currentUser;
 
-    private static JLabel totalPostsLabel; // Declare totalPostsLabel as a class-level variable
+    private static JLabel totalPostsLabel;
+    private static JLabel followersLabel;
+    private static JLabel followingLabel;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Instagram");
@@ -51,9 +51,9 @@ public class App {
                     User user = users.get(username);
                     if (user.getPassword().equals(password)) {
                         currentUser = user;
-                        // Set totalPostsLabel before calling showProfilePage
                         totalPostsLabel = new JLabel("Total Posts: " + currentUser.getTotalPosts() + "   ");
-                        App.setTotalPostsLabel(totalPostsLabel); // Set totalPostsLabel in the App class
+                        followersLabel = new JLabel("Followers: " + currentUser.getFollowers() + "   ");
+                        followingLabel = new JLabel("Following: " + currentUser.getFollowing() + "   ");
                         showProfilePage();
                     } else {
                         JOptionPane.showMessageDialog(frame, "Incorrect password!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -101,10 +101,10 @@ public class App {
 
         JLabel usernameLabel = new JLabel("Username: " + currentUser.getUsername());
 
-        JPanel horizontalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT)); // Use FlowLayout to align components
-        horizontalPanel.add(new JLabel("Total Posts: " + currentUser.getTotalPosts() + "   "));
-        horizontalPanel.add(new JLabel("Followers: " + currentUser.getFollowers() + "   "));
-        horizontalPanel.add(new JLabel("Following: " + currentUser.getFollowing() + "   "));
+        JPanel horizontalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        horizontalPanel.add(totalPostsLabel);
+        horizontalPanel.add(followersLabel);
+        horizontalPanel.add(followingLabel);
 
         JButton uploadImageButton = new JButton("Upload Image");
         JButton followButton = new JButton("Follow");
@@ -118,10 +118,9 @@ public class App {
                 int result = fileChooser.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
-                    // Logic to handle the selected image file
                     JOptionPane.showMessageDialog(profileFrame, "Image uploaded successfully: " + selectedFile.getName());
                     currentUser.incrementTotalPosts();
-                    totalPostsLabel.setText("Total Posts: " + currentUser.getTotalPosts());
+                    totalPostsLabel.setText("Total Posts: " + currentUser.getTotalPosts() + "   ");
                 }
             }
         });
@@ -129,51 +128,50 @@ public class App {
         followButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String followUsername = JOptionPane.showInputDialog(profileFrame, "Enter the username to follow:");
-                if (followUsername != null && !followUsername.isEmpty()) {
-                    if (users.containsKey(followUsername)) {
-                        User followUser = users.get(followUsername);
-                        currentUser.follow(followUser);
-                        JOptionPane.showMessageDialog(profileFrame, "You are now following " + followUsername);
-                    } else {
-                        JOptionPane.showMessageDialog(profileFrame, "User '" + followUsername + "' not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                if (currentUser != null) { // Check if currentUser is not null
+                    String followUsername = JOptionPane.showInputDialog(profileFrame, "Enter the username to follow:");
+                    if (followUsername != null && !followUsername.isEmpty()) {
+                        if (users.containsKey(followUsername)) {
+                            User followUser = users.get(followUsername);
+                            currentUser.follow(followUser);
+                            currentUser.incrementFollowing();
+                            followUser.incrementFollowers();
+                            followersLabel.setText("Followers: " + currentUser.getFollowers() + "   ");
+                            followingLabel.setText("Following: " + currentUser.getFollowing() + "   ");
+                            JOptionPane.showMessageDialog(profileFrame, "You are now following " + followUsername);
+                        } else {
+                            JOptionPane.showMessageDialog(profileFrame, "User '" + followUsername + "' not found.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
             }
         });
 
-        JPanel buttonPanel = new JPanel(new BorderLayout()); // Use BorderLayout for button panel
-
-        JPanel leftButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Align left buttons
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        JPanel leftButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         leftButtonPanel.add(uploadImageButton);
         leftButtonPanel.add(followButton);
         buttonPanel.add(leftButtonPanel, BorderLayout.WEST);
 
         JButton logoutButton = new JButton("Logout");
-        logoutButton.setPreferredSize(new Dimension(100, 40)); // Set preferred size
+        logoutButton.setPreferredSize(new Dimension(100, 40));
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                profileFrame.dispose(); // Close the profile window
-                currentUser = null; // Reset current user
-                // Display login/register page again
+                profileFrame.dispose();
+                currentUser = null;
                 main(new String[]{});
             }
         });
 
-        buttonPanel.add(logoutButton, BorderLayout.EAST); // Add logout button to the right
+        buttonPanel.add(logoutButton, BorderLayout.EAST);
 
         panel.add(usernameLabel);
         panel.add(horizontalPanel);
-        panel.add(buttonPanel); // Add button panel
+        panel.add(buttonPanel);
 
         profileFrame.add(panel);
         profileFrame.setVisible(true);
-    }
-
-
-    public static void setTotalPostsLabel(JLabel totalPostsLabel) {
-        App.totalPostsLabel = totalPostsLabel;
     }
 }
 
@@ -226,8 +224,7 @@ class User {
 
     public void follow(User user) {
         System.out.println("Following user: " + user.getUsername());
-        user.incrementFollowers();
-        this.incrementFollowing();
     }
 }
+
 

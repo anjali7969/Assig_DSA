@@ -52,7 +52,6 @@ public class  AntColonyAlgorithm_a {
                     bestTour = antTours[ant].clone();
                 }
             }
-
             decayPheromones();
         }
 
@@ -190,3 +189,6 @@ public class  AntColonyAlgorithm_a {
         }
     }
 }
+
+
+

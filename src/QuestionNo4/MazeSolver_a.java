@@ -2,7 +2,6 @@ package QuestionNo4;
 
 import java.util.LinkedList;
 import java.util.Queue;
-
 public class MazeSolver_a {
 
     public static int minStepsToCollectAllKeys(String[] grid) {
@@ -51,7 +50,8 @@ public class MazeSolver_a {
                 if (newX >= 0 && newX < m && newY >= 0 && newY < n && grid[newX].charAt(newY) != 'W') {
                     char cell = grid[newX].charAt(newY);
 
-                    if (cell == 'E' || cell == 'P' || (cell >= 'a' && cell <= 'f') || (cell >= 'A' && cell <= 'F' && (keys & (1 << (cell - 'A'))) != 0)) {
+                    if (cell == 'E' || cell == 'P' || (cell >= 'a' && cell <= 'f') || (cell >= 'A' && cell <= 'F'
+                            && (keys & (1 << (cell - 'A'))) != 0)) {
                         int newKeys = keys;
                         if (cell >= 'a' && cell <= 'f') {
                             newKeys |= (1 << (cell - 'a')); // Collect the key

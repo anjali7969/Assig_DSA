@@ -1,7 +1,5 @@
 package QuestionNo2;
-
 public class SewingMachine_a {
-
     public static int minMovesToEqualize(int[] machines) {
         int totalDresses = 0;
         for (int dresses : machines) {
@@ -23,11 +21,11 @@ public class SewingMachine_a {
 
         return moves;
     }
-
     public static void main(String[] args) {
         int[] machines = {1, 0, 5};
         int minMoves = minMovesToEqualize(machines);
         System.out.println("Minimum number of moves required: " + minMoves); //output:3
     }
 }
+
 

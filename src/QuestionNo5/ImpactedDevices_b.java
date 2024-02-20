@@ -93,5 +93,8 @@ public class ImpactedDevices_b {
         List<Integer> impactedDevices = q5B.findImpactedDevices(n, connections, targetDevice);
 
         System.out.println("Impacted Devices (other than target device by  " + targetDevice + "): " + impactedDevices);
+        // output[5,7]
     }
 }
+
+

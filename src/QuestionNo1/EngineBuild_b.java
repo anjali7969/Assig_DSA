@@ -1,7 +1,5 @@
 package QuestionNo1;
-
 import java.util.Arrays;
-
 public class EngineBuild_b {
     public static int minTimeToBuildEngines(int[] engines, int splitCost) {
         // Sort engines in ascending order

@@ -1,6 +1,5 @@
 package QuestionNo6;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -103,9 +102,7 @@ public class AsyncImageDownloader extends JFrame {
     }
 
     private class ImageDownloadTask implements Runnable {
-
         private String url;
-
         public ImageDownloadTask(String url) {
             this.url = url;
         }
@@ -119,11 +116,10 @@ public class AsyncImageDownloader extends JFrame {
                 // Extract file name from URL
                 String fileName = url.substring(url.lastIndexOf('/') + 1);
                 // Replace invalid characters in file name
-                fileName = fileName.replaceAll("[^a-zA-Z0-9.-]", "_"); // Replace invalid characters with underscores
-
+                fileName = fileName.replaceAll("[^a-zA-Z0-9.-]", "_");
+                // Replace invalid characters with underscores
                 String desktopPath = System.getProperty("user.home") + "/Downloads/";
                 String filePath = "C:\\Users\\Anjali\\Downloads\\" + fileName;
-
 
                 FileOutputStream outputStream = new FileOutputStream(filePath);
 
@@ -166,7 +162,8 @@ public class AsyncImageDownloader extends JFrame {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
 
@@ -178,3 +175,7 @@ public class AsyncImageDownloader extends JFrame {
         });
     }
 }
+
+
+
+

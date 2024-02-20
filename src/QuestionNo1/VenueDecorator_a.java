@@ -21,7 +21,6 @@
 //  6 + 1 = 7.
 
 package QuestionNo1;
-
 public class VenueDecorator_a {
     public static int minCost(int[][] costs) {
         if (costs == null || costs.length == 0) {
